@@ -1,16 +1,77 @@
-# React + Vite
+# GiftPicker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React application to browse gift ideas for different friends. Pick a friend to see a curated list of items with images, prices, and direct buy links. The app also totals the selected friend's gift list.
 
-Currently, two official plugins are available:
+## ⚙️ Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Language: JavaScript (ESNext)
+- Framework: React 19
+- Bundler/Dev Server: Vite
+- Package Manager: npm
+- UI: Inline styles (no UI library)
 
-## React Compiler
+## 🚀 Running the Application
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js (LTS recommended) and npm installed.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Run in Development
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Start the dev server:
+
+   ```bash
+   npm run dev
+   ```
+
+3. Open the printed local URL (usually `http://localhost:5173`).
+
+### Build for Production (from the command line)
+
+1. Create a production build:
+
+   ```bash
+   npm run build
+   ```
+
+2. Preview the built app locally:
+
+   ```bash
+   npm run preview
+   ```
+
+## ✨ Features
+
+- Pick a friend to view a tailored gift list
+- See item image, name, and price with direct buy links
+- Automatic total price calculation for the friend’s list
+- Back button to switch friends quickly
+- Responsive table with horizontal scroll on smaller screens
+
+## 📁 Project Structure (key files)
+
+- `src/App.jsx` – Main app logic, renders gift table and totals
+- `src/FriendButtons.jsx` – Landing view to choose a friend
+- `src/main.jsx` – App bootstrap
+
+## 🧑‍💻 Scripts
+
+- `npm run dev` – start dev server
+- `npm run build` – build for production
+- `npm run preview` – serve the production build locally
+- `npm run lint` – run ESLint
+
+## 💬 Contact
+
+Author: Zainab Qazi
+
+- GitHub: https://github.com/your-username
+- LinkedIn: https://www.linkedin.com/in/your-profile
+
+Replace the above links with your actual profiles.
