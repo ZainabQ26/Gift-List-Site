@@ -1,6 +1,6 @@
 # GiftPicker
 
-A simple React application to browse gift ideas for different friends. Pick a friend to see a curated list of items with images, prices, and direct buy links. The app also totals the selected friend's gift list.
+A simple React application to browse gift ideas for different friends see list of items with images, prices, and direct buy links with a total at the bottom.
 
 ## ⚙️ Technologies
 
@@ -68,10 +68,4 @@ A simple React application to browse gift ideas for different friends. Pick a fr
 - `npm run lint` – run ESLint
 
 ## 💬 Contact
-
-Author: Zainab Qazi
-
-- GitHub: https://github.com/your-username
-- LinkedIn: https://www.linkedin.com/in/your-profile
-
-Replace the above links with your actual profiles.
+**Zainab Qazi** - [GitHub](https://github.com/ZainabQ26) - [LinkedIn](https://www.linkedin.com/in/zainab--qazi/)
