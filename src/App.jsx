@@ -41,7 +41,7 @@ function App() {
                 price: 25.99,
                 url: "https://www.amazon.com/Dr-Pepper-Candle/dp/B0EXAMPLE",
                 image:
-                    "https://m.media-amazon.com/images/I/81ULBl6JxZL._AC_SY300_SX300_QL70_FMwebp_.jpg",
+                    "https://m.media-amazon.com/images/I/81pdLpgD0YL._AC_SX679_.jpg",
             },
         ],
 
