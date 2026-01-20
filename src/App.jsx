@@ -32,14 +32,14 @@ function App() {
             {
                 name: "Drinks Lovers Canvas Bags",
                 price: 13.15,
-                url: "https://www.amazon.com/SDrinks-Lovers-Canvas-Bags/dp/B0EXAMPLE",
+                url: "https://www.amazon.com/Jollaroo-Drinks-Lovers-Canvas-Bags/dp/B0FJM1QT5H/",
                 image:
                     "https://m.media-amazon.com/images/I/81t8H6PXNFL._AC_SX342_SY445_QL70_FMwebp_.jpg",
             },
             {
                 name: "Doctor Pepper Candle",
                 price: 25.99,
-                url: "https://www.amazon.com/Dr-Pepper-Candle/dp/B0EXAMPLE",
+                url: "https://www.amazon.com/Doctor-Pepper-Candle-Occasion-Aesthetic/dp/B0CQ2746WY/",
                 image:
                     "https://m.media-amazon.com/images/I/81pdLpgD0YL._AC_SX679_.jpg",
             },
