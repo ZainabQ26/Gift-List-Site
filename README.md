@@ -1,4 +1,4 @@
-# GiftPicker
+# Gift List
 
 A simple React application to browse gift ideas for different friends see list of items with images, prices, and direct buy links with a total at the bottom.
 
