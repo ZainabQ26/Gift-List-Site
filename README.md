@@ -2,7 +2,7 @@
 
 A simple React application to browse gift ideas for different friends see list of items with images, prices, and direct buy links with a total at the bottom.
 
-## ⚙️ Technologies
+##  Technologies
 
 - Language: JavaScript (ESNext)
 - Framework: React 19
@@ -10,7 +10,7 @@ A simple React application to browse gift ideas for different friends see list o
 - Package Manager: npm
 - UI: Inline styles (no UI library)
 
-## 🚀 Running the Application
+##  Running the Application
 
 ### Prerequisites
 
@@ -46,7 +46,7 @@ A simple React application to browse gift ideas for different friends see list o
    npm run preview
    ```
 
-## ✨ Features
+##  Features
 
 - Pick a friend to view a tailored gift list
 - See item image, name, and price with direct buy links
@@ -54,18 +54,18 @@ A simple React application to browse gift ideas for different friends see list o
 - Back button to switch friends quickly
 - Responsive table with horizontal scroll on smaller screens
 
-## 📁 Project Structure (key files)
+##  Project Structure (key files)
 
 - `src/App.jsx` – Main app logic, renders gift table and totals
 - `src/FriendButtons.jsx` – Landing view to choose a friend
 - `src/main.jsx` – App bootstrap
 
-## 🧑‍💻 Scripts
+##  Scripts
 
 - `npm run dev` – start dev server
 - `npm run build` – build for production
 - `npm run preview` – serve the production build locally
 - `npm run lint` – run ESLint
 
-## 💬 Contact
+##  Contact
 **Zainab Qazi** - [GitHub](https://github.com/ZainabQ26) - [LinkedIn](https://www.linkedin.com/in/zainab--qazi/)
