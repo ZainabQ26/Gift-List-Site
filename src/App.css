@@ -40,24 +40,4 @@
 .read-the-docs {
   color: #888;
 }
-@media print {
-  /* Step A: Hide all interactive user elements */
-  button, 
-  form, 
-  input,
-  .no-print {
-    display: none !important;
-  }
 
-  /* Step B: Invert the page colors to conserve ink */
-  body, html, div, table, tr, td, th {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    background-image: none !important;
-  }
-
-  /* Step C: Formulate high-contrast crisp borders for paper printing */
-  table, th, td {
-    border: 1px solid #111111 !important;
-  }
-}

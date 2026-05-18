@@ -1,12 +1,16 @@
+import { useState } from "react";
+
 function FriendButtons({ friendsList, onSelect, onAddFriend }) {
     const [nameInput, setNameInput] = useState("");
+
     const processSubmission = (e) => {
-    e.preventDefault(); // Stop the website from refreshing!
-    if (!nameInput.trim()) return; // If they typed nothing but spaces, ignore it.
-    
-    onAddFriend(nameInput); // Send the typed name up to App.jsx!
-    setNameInput("");       // Clear out the input field so it's blank again.
-};
+        e.preventDefault();
+        if (!nameInput.trim()) return;
+
+        onAddFriend(nameInput.trim());
+        setNameInput("");
+    };
+
     const pageStyle = {
         backgroundColor: "#202020",
         color: "white",
@@ -53,35 +57,43 @@ function FriendButtons({ friendsList, onSelect, onAddFriend }) {
         <div style={pageStyle}>
             <div style={columnStyle}>
                 <div style={titleStyle}>Pick a friend</div>
+
                 <form onSubmit={processSubmission} style={{ display: "flex", gap: "15px", marginBottom: "30px" }}>
-    <input 
-        type="text"
-        placeholder="Add more friends..."
-        style={{
-            flex: 1,
-            padding: "15px 25px",
-            fontSize: "1.8rem",
-            borderRadius: "14px",
-            border: "2px solid #555",
-            backgroundColor: "#111",
-            color: "white"
-        }}
-        value={nameInput}
-        onChange={(e) => setNameInput(e.target.value)}
-    />
-    <button type="submit" style={{ padding: "15px 35px", fontSize: "1.8rem", fontWeight: "bold", cursor: "pointer", backgroundColor: "#4CBB17", color: "white", borderRadius: "14px", border: "none" }}>
-        Add
-    </button>
-</form>
+                    <input 
+                        type="text"
+                        placeholder="Friend's Name..."
+                        style={{
+                            flex: 1,
+                            padding: "15px 25px",
+                            fontSize: "1.8rem",
+                            borderRadius: "14px",
+                            border: "2px solid #555",
+                            backgroundColor: "#111",
+                            color: "white"
+                        }}
+                        value={nameInput}
+                        onChange={(e) => setNameInput(e.target.value)}
+                    />
+                    <button type="submit" style={{ padding: "15px 35px", fontSize: "1.8rem", fontWeight: "bold", cursor: "pointer", backgroundColor: "#4CBB17", color: "white", borderRadius: "14px", border: "none" }}>
+                        Add
+                    </button>
+                </form>
+
                 {friendsList.map((friendKey) => (
-    <button 
-        key={friendKey} 
-        style={btnStyle} 
-        onClick={() => onSelect(friendKey)}
-    >
-        {friendKey}
-    </button>
-))}
+                    <button 
+                        key={friendKey} 
+                        style={btnStyle} 
+                        onClick={() => onSelect(friendKey)}
+                    >
+                        {friendKey}
+                    </button>
+                ))}
+
+                <div style={{ textAlign: "center", marginTop: "40px" }}>
+                    <button onClick={() => window.print()} style={{ backgroundColor: "#111", color: "white", border: "none", padding: "12px 24px", borderRadius: "8px", cursor: "pointer", fontSize: "1.2rem" }}>
+                        🖨️ Print Dashboard Screen
+                    </button>
+                </div>
             </div>
         </div>
     );

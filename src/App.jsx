@@ -16,8 +16,7 @@ function App() {
                 name: "Crayola Color Wonder Magic",
                 price: 14.99,
                 url: "https://www.amazon.com/Crayola-Color-Wonder-Magic-Painting/dp/B084Y3DLFJ/",
-                image:
-                    "https://m.media-amazon.com/images/I/81q13+KL29L._AC_SY300_SX300_QL70_FMwebp_.jpg",
+                image: "https://m.media-amazon.com/images/I/81q13+KL29L._AC_SY300_SX300_QL70_FMwebp_.jpg",
             },
         ],
 
@@ -26,62 +25,70 @@ function App() {
                 name: "Dr Pepper Pillow",
                 price: 29.99,
                 url: "https://www.amazon.com/RMKA-Doctor-Pepper-Pillow-RMKAPILLOW-008/dp/B0D8LDPTDL/",
-                image:
-                    "https://m.media-amazon.com/images/I/71e-sbNf8IL._AC_SY300_SX300_QL70_FMwebp_.jpg",
+                image: "https://m.media-amazon.com/images/I/71e-sbNf8IL._AC_SY300_SX300_QL70_FMwebp_.jpg",
             },
             {
                 name: "Drinks Lovers Canvas Bags",
                 price: 13.15,
                 url: "https://www.amazon.com/Jollaroo-Drinks-Lovers-Canvas-Bags/dp/B0FJM1QT5H/",
-                image:
-                    "https://m.media-amazon.com/images/I/81t8H6PXNFL._AC_SX342_SY445_QL70_FMwebp_.jpg",
+                image: "https://m.media-amazon.com/images/I/81t8H6PXNFL._AC_SX342_SY445_QL70_FMwebp_.jpg",
             },
             {
                 name: "Doctor Pepper Candle",
                 price: 25.99,
                 url: "https://www.amazon.com/Doctor-Pepper-Candle-Occasion-Aesthetic/dp/B0CQ2746WY/",
-                image:
-                    "https://m.media-amazon.com/images/I/81pdLpgD0YL._AC_SX679_.jpg",
+                image: "https://m.media-amazon.com/images/I/81pdLpgD0YL._AC_SX679_.jpg",
             },
         ],
-
 
         FRIEND3: [
             {
                 name: "Periodic Table Speed Puzzle Cube",
                 price: 9.99,
                 url: "https://www.amazon.com/Cuberspeed-Periodic-Table-speed-puzzle/dp/B0CWVK2Q1H",
-                image:
-                    "https://m.media-amazon.com/images/I/81ULBl6JxZL._AC_SY300_SX300_QL70_FMwebp_.jpg",
+                image: "https://m.media-amazon.com/images/I/81ULBl6JxZL._AC_SY300_SX300_QL70_FMwebp_.jpg",
             },
         ],
     });
 
-const handleAddFriend = (friendName) => {
-    const cleanName = friendName.trim(); // Removes accidental empty spaces
-
-    // If the name already exists, stop immediately so we don't erase their gifts!
-    if (giftsByFriend[cleanName]) {
-        alert("That friend already exists!");
-        return;
-    }
-
-    // Use our state function to update the screen
-    setGiftsByFriend({
-        ...giftsByFriend, // 1. Copy everything currently inside the list
-        [cleanName]: []   // 2. Add the new name key with a fresh, empty gift array
+    const [newItemInputs, setNewItemInputs] = useState({
+        name: "",
+        price: "",
+        url: ""
     });
-};
- if (!selectedFriend) {
-    return (
-        <FriendButtons 
-            friendsList={Object.keys(giftsByFriend)} // Pass the names array down
-            onSelect={setSelectedFriend}            // Pass the screen-switcher down
-            onAddFriend={handleAddFriend}            // Pass the addition rule down
-        />
-    );
-}
-    
+
+    const handleAddFriend = (friendName) => {
+        if (giftsByFriend[friendName]) {
+            alert("That friend already exists!");
+            return;
+        }
+
+        setGiftsByFriend({
+            ...giftsByFriend,
+            [friendName]: []
+        });
+    };
+
+    const handleAddItemToFriend = (e) => {
+        e.preventDefault();
+        if (!newItemInputs.name.trim()) return;
+
+        const addedItem = {
+            name: newItemInputs.name.trim(),
+            price: parseFloat(newItemInputs.price) || 0.00,
+            url: newItemInputs.url.trim() || "https://www.amazon.com",
+            image: "https://m.media-amazon.com/images/I/7126IIfAZgL._AC_SL1500_.jpg"
+        };
+
+        const currentFriendList = giftsByFriend[selectedFriend] ?? [];
+
+        setGiftsByFriend({
+            ...giftsByFriend,
+            [selectedFriend]: [...currentFriendList, addedItem]
+        });
+
+        setNewItemInputs({ name: "", price: "", url: "" });
+    };
 
     const gifts = giftsByFriend[selectedFriend] ?? [];
     const total = gifts.reduce((sum, g) => sum + g.price, 0);
@@ -92,7 +99,8 @@ const handleAddFriend = (friendName) => {
         backgroundColor: "#202020",
         color: "white",
         display: "flex",
-        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
         padding: "30px 0",
         boxSizing: "border-box",
         fontFamily: "sans-serif",
@@ -167,7 +175,6 @@ const handleAddFriend = (friendName) => {
         lineHeight: 1.25,
     };
 
-
     const imgStyle = {
         width: "190px",
         height: "190px",
@@ -182,6 +189,16 @@ const handleAddFriend = (friendName) => {
         fontWeight: "bold",
         textAlign: "center",
     };
+
+    if (!selectedFriend) {
+        return (
+            <FriendButtons 
+                friendsList={Object.keys(giftsByFriend)} 
+                onSelect={setSelectedFriend} 
+                onAddFriend={handleAddFriend}
+            />
+        );
+    }
 
     return (
         <div style={pageStyle}>
@@ -200,36 +217,65 @@ const handleAddFriend = (friendName) => {
                 <div style={tableWrapper}>
                     <table style={tableStyle}>
                         <thead>
-                        <tr>
-                            <th style={headerCellStyle}>Gift</th>
-                            <th style={headerCellStyle}>Price</th>
-                            <th style={headerCellStyle}>Image</th>
-                        </tr>
+                            <tr>
+                                <th style={headerCellStyle}>Gift</th>
+                                <th style={headerCellStyle}>Price</th>
+                                <th style={headerCellStyle}>Image</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        {gifts.map((gift) => (
-                            <tr key={gift.name}>
-                                <td style={cellStyle}>
-                                    <button style={giftButtonStyle}>{gift.name}</button>
-                                </td>
-                                <td style={cellStyle}>${gift.price.toFixed(2)}</td>
-                                <td style={cellStyle}>
-                                    <a
-                                        href={gift.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <img src={gift.image} alt={gift.name} style={imgStyle} />
-                                    </a>
-                                </td>
-                            </tr>
-                        ))}
+                            {gifts.map((gift) => (
+                                <tr key={gift.name}>
+                                    <td style={cellStyle}>
+                                        <button style={giftButtonStyle}>{gift.name}</button>
+                                    </td>
+                                    <td style={cellStyle}>${gift.price.toFixed(2)}</td>
+                                    <td style={cellStyle}>
+                                        <a href={gift.url} target="_blank" rel="noopener noreferrer">
+                                            <img src={gift.image} alt={gift.name} style={imgStyle} />
+                                        </a>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
 
                 <div style={totalStyle}>
                     Total for {selectedFriend}: ${total.toFixed(2)}
+                </div>
+
+                <form onSubmit={handleAddItemToFriend} style={{ display: "flex", gap: "10px", marginTop: "30px", maxWidth: "1100px", margin: "30px auto 0 auto" }} className="no-print">
+                    <input 
+                        type="text"
+                        placeholder="New Gift Name..."
+                        style={{ flex: 2, padding: "10px 15px", fontSize: "1rem", borderRadius: "6px", border: "1px solid #555", backgroundColor: "#111", color: "white" }}
+                        value={newItemInputs.name}
+                        onChange={(e) => setNewItemInputs({ ...newItemInputs, name: e.target.value })}
+                    />
+                    <input 
+                        type="text"
+                        placeholder="Price (e.g. 15.99)..."
+                        style={{ flex: 1, padding: "10px 15px", fontSize: "1rem", borderRadius: "6px", border: "1px solid #555", backgroundColor: "#111", color: "white" }}
+                        value={newItemInputs.price}
+                        onChange={(e) => setNewItemInputs({ ...newItemInputs, price: e.target.value })}
+                    />
+                    <input 
+                        type="text"
+                        placeholder="Amazon Product URL Link..."
+                        style={{ flex: 2, padding: "10px 15px", fontSize: "1rem", borderRadius: "6px", border: "1px solid #555", backgroundColor: "#111", color: "white" }}
+                        value={newItemInputs.url}
+                        onChange={(e) => setNewItemInputs({ ...newItemInputs, url: e.target.value })}
+                    />
+                    <button type="submit" style={{ padding: "10px 20px", fontWeight: "bold", backgroundColor: "#0066cc", color: "white", border: "none", borderRadius: "6px", cursor: "pointer" }}>
+                        Add Item
+                    </button>
+                </form>
+
+                <div style={{ textAlign: "center", marginTop: "30px" }}>
+                    <button onClick={() => window.print()} style={{ ...backButtonStyle, padding: "12px 24px", fontSize: "1.2rem" }}>
+                        🖨️ Print This List
+                    </button>
                 </div>
             </div>
         </div>
