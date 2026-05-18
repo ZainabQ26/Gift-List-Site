@@ -4,7 +4,7 @@ import FriendButtons from "./FriendButtons";
 function App() {
     const [selectedFriend, setSelectedFriend] = useState(null);
 
-    const giftsByFriend = {
+    const [giftsByFriend, setGiftsByFriend] = useState({
         FRIEND1: [
             {
                 name: "LEGO Botanicals Happy Plants Building Toys",
@@ -45,6 +45,7 @@ function App() {
             },
         ],
 
+
         FRIEND3: [
             {
                 name: "Periodic Table Speed Puzzle Cube",
@@ -54,11 +55,33 @@ function App() {
                     "https://m.media-amazon.com/images/I/81ULBl6JxZL._AC_SY300_SX300_QL70_FMwebp_.jpg",
             },
         ],
-    };
+    });
 
-    if (!selectedFriend) {
-        return <FriendButtons onSelect={setSelectedFriend} />;
+const handleAddFriend = (friendName) => {
+    const cleanName = friendName.trim(); // Removes accidental empty spaces
+
+    // If the name already exists, stop immediately so we don't erase their gifts!
+    if (giftsByFriend[cleanName]) {
+        alert("That friend already exists!");
+        return;
     }
+
+    // Use our state function to update the screen
+    setGiftsByFriend({
+        ...giftsByFriend, // 1. Copy everything currently inside the list
+        [cleanName]: []   // 2. Add the new name key with a fresh, empty gift array
+    });
+};
+ if (!selectedFriend) {
+    return (
+        <FriendButtons 
+            friendsList={Object.keys(giftsByFriend)} // Pass the names array down
+            onSelect={setSelectedFriend}            // Pass the screen-switcher down
+            onAddFriend={handleAddFriend}            // Pass the addition rule down
+        />
+    );
+}
+    
 
     const gifts = giftsByFriend[selectedFriend] ?? [];
     const total = gifts.reduce((sum, g) => sum + g.price, 0);
